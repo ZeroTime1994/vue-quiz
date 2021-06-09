@@ -38,6 +38,8 @@
   background-color: #dce2e8;
   padding: 0.7rem 0.4rem;
   border-radius: 10px;
+  position: sticky;
+  top: 0;
 }
 
 .row {
