@@ -1,12 +1,16 @@
 <template>
-  <div class="app">
-    <h1>Hello Dear Friend! \ (•◡•) /</h1>
-  </div>
+  <layout>
+    <search-box />
+  </layout>
 </template>
 
 <script>
+import SearchBox from "@/components/SearchBox.vue";
+import Layout from "@/layouts/Default.vue";
+
 export default {
   name: "App",
+  components: { SearchBox, Layout },
 };
 </script>
 
