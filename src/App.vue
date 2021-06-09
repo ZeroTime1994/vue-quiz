@@ -6,12 +6,12 @@
 
 <script>
 export default {
-  name: 'App'
-}
+  name: "App",
+};
 </script>
 
 <style scoped>
-  .app {
-    text-align: center;
-  }
+.app {
+  text-align: center;
+}
 </style>
