@@ -1,5 +1,5 @@
 <template>
-  <div class="item-container">
+  <div class="item-container" :style="{ backgroundColor: color + '40' }">
     <div class="row">
       <div class="delete-button-container">
         <img width="28" src="@/assets/images/icons/delete-empty.svg" alt="" />
@@ -7,21 +7,16 @@
       <div class="row">
         <div class="item-details">
           <h3>
-            title
+            {{ title }}
           </h3>
           <p>
-            description
+            {{ description }}
           </p>
         </div>
-        <img
-          src="https://source.unsplash.com/random"
-          width="75"
-          height="75"
-          alt=""
-        />
+        <img :src="imageUrl" width="75" height="75" :alt="title" />
       </div>
     </div>
-    <div class="row line"></div>
+    <div class="row line" :style="{ backgroundColor: color }"></div>
   </div>
 </template>
 <script>
