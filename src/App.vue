@@ -1,7 +1,13 @@
 <template>
   <layout>
     <search-box />
-    <item-box v-for="(item, index) in items" :key="index" />
+    <item-box
+      v-for="(item, index) in items"
+      :key="index"
+      :title="item.title.text"
+      :description="item.description"
+      :color="item.color"
+    />
   </layout>
 </template>
 
