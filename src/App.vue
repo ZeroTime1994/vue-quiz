@@ -25,7 +25,7 @@ import SearchBox from "@/components/SearchBox.vue";
 import Layout from "@/layouts/Default.vue";
 import ItemBox from "./components/ItemBox.vue";
 import axios from "axios";
-// import debounce from "./utils/debounce";
+import generateRandomColor from "./utils/generate-color";
 
 export default {
   name: "App",
@@ -94,12 +94,19 @@ export default {
       const keys = Object.keys(this.dataObject);
       const lastKeyValue = keys[keys.length - 1];
 
+      //get all uses colors in items
+      const excludedColors = this.items.map((item) => item.color);
+
+      //generate random color is not in items
+      const randomColor = generateRandomColor(excludedColors);
+
       const newItem = {
         ...this.items[0],
         title: { text: itemTitle },
+        color: randomColor,
       };
 
-      //Create new key  last key + 1 ; ex lastkey = '9' new key became '10'
+      //Create new key  last key + 1 ; ex: lastkey = '9' new key became '10'
       const newKey = +lastKeyValue + 1;
       this.dataObject[newKey] = newItem;
 
