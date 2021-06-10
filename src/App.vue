@@ -6,6 +6,7 @@
       :key="index"
       :title="item.title.text"
       :description="item.description"
+      :imageUrl="item.img"
       :color="item.color"
     />
   </layout>

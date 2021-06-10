@@ -68,6 +68,7 @@ export default {
   }
   img {
     border-radius: 10px;
+    overflow: hidden;
   }
 
   .delete-button-container {
