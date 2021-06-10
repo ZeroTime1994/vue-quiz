@@ -21,10 +21,10 @@
 </template>
 
 <script>
-import SearchBox from "@/components/SearchBox.vue";
-import Layout from "@/layouts/Default.vue";
-import ItemBox from "./components/ItemBox.vue";
 import axios from "axios";
+import Layout from "@/layouts/Default.vue";
+import SearchBox from "@/components/SearchBox.vue";
+import ItemBox from "./components/ItemBox.vue";
 import generateRandomColor from "./utils/generate-color";
 
 export default {
@@ -38,7 +38,7 @@ export default {
     };
   },
   watch: {
-    //change data to aray when data changed
+    //change data to array when data changed
     dataObject: {
       handler() {
         const keys = Object.keys(this.dataObject);
@@ -77,10 +77,11 @@ export default {
     searchInItems() {
       const filterItems = this.items.filter(
         (item) =>
-          //if we want just find items where title and description includes search text;
+          // if want to filter items where title and description includes the search text;
           // item.description.includes(this.searchText) ||
           // item.title.text.includes(this.searchText)
-          //if title or description has exact of searchText
+
+          //if title or description is exact same as searchText
           item.title.text === this.searchText ||
           item.description === this.searchText
       );
@@ -150,7 +151,7 @@ export default {
 }
 .list-enter-active,
 .list-leave-active {
-  transition: all 1s ease;
+  transition: all 1s ease-in-out;
 }
 .list-enter-from,
 .list-leave-to {

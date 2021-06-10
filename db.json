@@ -71,24 +71,6 @@
       "description": "lorem ipsum dolor sit amet",
       "img": "https://source.unsplash.com/random",
       "color": "#00334e"
-    },
-    "10": {
-      "title": {
-        "text": "new item"
-      },
-      "description": "lorem ipsum dolor sit amet",
-      "img": "https://source.unsplash.com/random",
-      "color": "#662836",
-      "id": "1"
-    },
-    "11": {
-      "title": {
-        "text": "another item"
-      },
-      "description": "lorem ipsum dolor sit amet",
-      "img": "https://source.unsplash.com/random",
-      "color": "#5ca599",
-      "id": "1"
     }
   }
 }
