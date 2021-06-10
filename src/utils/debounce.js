@@ -16,7 +16,7 @@ function debounce(func, wait, immediate) {
     }
   }
 
-  var debounced = function() {
+  let debounced = function() {
     context = this;
     args = arguments;
     timestamp = Date.now();

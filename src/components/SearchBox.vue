@@ -1,7 +1,14 @@
 <template>
   <div class="search-container">
     <div class="row">
-      <div class="plus">
+      <div
+        class="plus"
+        :style="{
+          opacity: disablePlus ? 0.5 : 1,
+          cursor: disablePlus ? 'unset' : 'pointer',
+        }"
+        @click="onAdd"
+      >
         <img src="@/assets/images/icons/plus.svg" />
       </div>
       <div class="input-container grow">
@@ -23,6 +30,17 @@ export default {
   props: {
     searchText: {
       type: String,
+    },
+    disablePlus: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  methods: {
+    onAdd() {
+      if (!this.disablePlus) {
+        this.$emit("add-item", this.searchText);
+      }
     },
   },
 };
@@ -63,6 +81,7 @@ export default {
   align-items: stretch;
 }
 
+// Plus Button Style
 .plus {
   cursor: pointer;
   border-radius: 50px;

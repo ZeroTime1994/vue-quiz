@@ -1,6 +1,10 @@
 <template>
   <layout>
-    <search-box v-model:searchText="searchText" />
+    <search-box
+      v-model:searchText="searchText"
+      @add-item="onStoreNewItem"
+      :disablePlus="filteredItems.length > 0"
+    />
     <item-box
       v-for="(item, index) in filteredItems"
       :key="index"
@@ -57,16 +61,12 @@ export default {
           item.title.text.includes(this.searchText)
       );
     }, 500),
+    onStoreNewItem(itemTitle) {
+      console.log(itemTitle);
+    },
   },
-
   mounted() {
     this.fetchItems();
   },
 };
 </script>
-
-<style scoped>
-.app {
-  text-align: center;
-}
-</style>
