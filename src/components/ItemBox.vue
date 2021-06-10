@@ -38,6 +38,10 @@ export default {
       required: true,
       type: String,
     },
+    id: {
+      required: true,
+      type: String,
+    },
   },
 };
 </script>

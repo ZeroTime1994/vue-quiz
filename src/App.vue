@@ -8,6 +8,7 @@
     <item-box
       v-for="(item, index) in filteredItems"
       :key="index"
+      :id="item.id"
       :title="item.title.text"
       :description="item.description"
       :imageUrl="item.img"
@@ -49,7 +50,15 @@ export default {
       axios
         .get("http://localhost:2000/data")
         .then((res) => {
-          this.items = Object.values(res.data);
+          const keys = Object.keys(res.data);
+          this.items = keys.map((key) => {
+            const item = res.data[key];
+            return {
+              ...item,
+              id: key,
+            };
+          });
+
           this.dataObject = res.data;
         })
         .catch((er) => {
