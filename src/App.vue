@@ -13,6 +13,7 @@
       :description="item.description"
       :imageUrl="item.img"
       :color="item.color"
+      @delete-item="onDeleteItem"
     />
   </layout>
 </template>
@@ -34,7 +35,22 @@ export default {
       searchText: "",
     };
   },
-  watch: {},
+  watch: {
+    dataObject: {
+      handler() {
+        console.log("changed");
+        const keys = Object.keys(this.dataObject);
+        this.items = keys.map((key) => {
+          const item = this.dataObject[key];
+          return {
+            ...item,
+            id: key,
+          };
+        });
+      },
+      deep: true,
+    },
+  },
   computed: {
     filteredItems() {
       if (this.searchText != "") {
@@ -50,15 +66,6 @@ export default {
       axios
         .get("http://localhost:2000/data")
         .then((res) => {
-          const keys = Object.keys(res.data);
-          this.items = keys.map((key) => {
-            const item = res.data[key];
-            return {
-              ...item,
-              id: key,
-            };
-          });
-
           this.dataObject = res.data;
         })
         .catch((er) => {
@@ -78,6 +85,7 @@ export default {
       return filterItems ? filterItems : [];
     },
 
+    //Store new item
     onStoreNewItem(itemTitle) {
       //Beacuase the data in db.json is not array i must post all data
       const keys = Object.keys(this.dataObject);
@@ -95,11 +103,31 @@ export default {
       axios
         .post("http://localhost:2000/data", this.dataObject)
         .then((res) => {
-          this.items = Object.values(res.data);
+          this.dataObject = res.data;
         })
         .catch((er) => {
           console.error(er);
         });
+    },
+
+    //Delete item
+    //id is the key of item
+    async onDeleteItem(id) {
+      console.log(id);
+
+      const confirm = await window.confirm("Are your sure?");
+
+      if (confirm) {
+        delete this.dataObject[id];
+        axios
+          .post("http://localhost:2000/data", this.dataObject)
+          .then((res) => {
+            this.dataObject = res.data;
+          })
+          .catch((er) => {
+            console.error(er);
+          });
+      }
     },
   },
   mounted() {

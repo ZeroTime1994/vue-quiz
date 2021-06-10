@@ -1,7 +1,7 @@
 <template>
   <div class="item-container" :style="{ backgroundColor: color + '40' }">
     <div class="row">
-      <div class="delete-button-container">
+      <div class="delete-button-container" @click="$emit('delete-item', id)">
         <img width="28" src="@/assets/images/icons/delete-empty.svg" alt="" />
       </div>
       <div class="row">
