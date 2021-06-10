@@ -1,6 +1,6 @@
 <template>
   <layout>
-    <search-box />
+    <search-box v-model:searchText="searchText" />
     <item-box
       v-for="(item, index) in items"
       :key="index"
@@ -24,7 +24,13 @@ export default {
   data() {
     return {
       items: [],
+      searchText: "",
     };
+  },
+  watch: {
+    searchText() {
+      console.log(this.searchText);
+    },
   },
   mounted() {
     axios

@@ -8,11 +8,24 @@
         <div class="icon">
           <img src="@/assets/images/icons/search.svg" />
         </div>
-        <input name="search" placeholder="Search something..." />
+        <input
+          @input="(e) => $emit('update:searchText', e.target.value)"
+          name="search"
+          placeholder="Search something..."
+        />
       </div>
     </div>
   </div>
 </template>
+<script>
+export default {
+  props: {
+    searchText: {
+      type: String,
+    },
+  },
+};
+</script>
 <style lang="scss" scoped>
 .input-container {
   position: relative;
