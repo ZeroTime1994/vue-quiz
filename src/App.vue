@@ -56,24 +56,6 @@ export default {
           console.error(er);
         });
     },
-
-    //Search Items Method with debounce
-    // searchInItems: debounce(function() {
-    //   const filterItems = this.items.filter(
-    //     (item) =>
-    //       //if we want just find items where title and description includes search text;
-
-    //       // item.description.includes(this.searchText) ||
-    //       // item.title.text.includes(this.searchText)
-
-    //       //if title or description has exact of searchText
-    //       item.title.text === this.searchText ||
-    //       item.description === this.searchText
-    //   );
-    //   console.log(filterItems);
-    //   return filterItems ? filterItems : [];
-    // }, 500),
-
     searchInItems() {
       const filterItems = this.items.filter(
         (item) =>
