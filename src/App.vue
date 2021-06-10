@@ -41,7 +41,6 @@ export default {
     //change data to aray when data changed
     dataObject: {
       handler() {
-        console.log("changed");
         const keys = Object.keys(this.dataObject);
         this.items = keys.map((key) => {
           const item = this.dataObject[key];
@@ -123,8 +122,6 @@ export default {
     //Delete item
     //id is the key of item
     async onDeleteItem(id) {
-      console.log(id);
-
       const confirm = await window.confirm("Are your sure?");
 
       if (confirm) {
