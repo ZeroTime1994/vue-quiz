@@ -5,16 +5,18 @@
       @add-item="onStoreNewItem"
       :disablePlus="filteredItems.length > 0"
     />
-    <item-box
-      v-for="(item, index) in filteredItems"
-      :key="index"
-      :id="item.id"
-      :title="item.title.text"
-      :description="item.description"
-      :imageUrl="item.img"
-      :color="item.color"
-      @delete-item="onDeleteItem"
-    />
+    <transition-group name="list">
+      <item-box
+        v-for="(item, index) in filteredItems"
+        :key="index"
+        :id="item.id"
+        :title="item.title.text"
+        :description="item.description"
+        :imageUrl="item.img"
+        :color="item.color"
+        @delete-item="onDeleteItem"
+      />
+    </transition-group>
   </layout>
 </template>
 
@@ -36,6 +38,7 @@ export default {
     };
   },
   watch: {
+    //change data to aray when data changed
     dataObject: {
       handler() {
         console.log("changed");
@@ -136,3 +139,18 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+.list-enter-active,
+.list-leave-active {
+  transition: all 1s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+</style>
