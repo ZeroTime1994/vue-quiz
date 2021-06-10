@@ -2,7 +2,7 @@
   <layout>
     <search-box v-model:searchText="searchText" />
     <item-box
-      v-for="(item, index) in items"
+      v-for="(item, index) in filteredItems"
       :key="index"
       :title="item.title.text"
       :description="item.description"
@@ -24,23 +24,39 @@ export default {
   data() {
     return {
       items: [],
+      filteredItems: [],
       searchText: "",
     };
   },
   watch: {
     searchText() {
-      console.log(this.searchText);
+      if (this.searchText != "") {
+        this.filteredItems = this.items.filter(
+          (item) =>
+            item.description.includes(this.searchText) ||
+            item.title.text.includes(this.searchText)
+        );
+      } else {
+        this.fetchItems();
+      }
     },
   },
+  methods: {
+    fetchItems() {
+      axios
+        .get("http://localhost:2000/data")
+        .then((res) => {
+          this.items = Object.values(res.data);
+          this.filteredItems = Object.values(res.data);
+        })
+        .catch((er) => {
+          console.error(er);
+        });
+    },
+  },
+
   mounted() {
-    axios
-      .get("http://localhost:2000/data")
-      .then((res) => {
-        this.items = res.data;
-      })
-      .catch((er) => {
-        console.error(er);
-      });
+    this.fetchItems();
   },
 };
 </script>

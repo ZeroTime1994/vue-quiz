@@ -10,6 +10,7 @@
         </div>
         <input
           @input="(e) => $emit('update:searchText', e.target.value)"
+          :value="searchText"
           name="search"
           placeholder="Search something..."
         />
