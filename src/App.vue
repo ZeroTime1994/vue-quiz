@@ -17,6 +17,7 @@ import SearchBox from "@/components/SearchBox.vue";
 import Layout from "@/layouts/Default.vue";
 import ItemBox from "./components/ItemBox.vue";
 import axios from "axios";
+import debounce from "./utils/debounce";
 
 export default {
   name: "App",
@@ -31,13 +32,9 @@ export default {
   watch: {
     searchText() {
       if (this.searchText != "") {
-        this.filteredItems = this.items.filter(
-          (item) =>
-            item.description.includes(this.searchText) ||
-            item.title.text.includes(this.searchText)
-        );
+        this.searchInItems();
       } else {
-        this.fetchItems();
+        this.filteredItems = this.items;
       }
     },
   },
@@ -53,6 +50,13 @@ export default {
           console.error(er);
         });
     },
+    searchInItems: debounce(function() {
+      this.filteredItems = this.items.filter(
+        (item) =>
+          item.description.includes(this.searchText) ||
+          item.title.text.includes(this.searchText)
+      );
+    }, 500),
   },
 
   mounted() {
