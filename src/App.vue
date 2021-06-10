@@ -57,8 +57,14 @@ export default {
     searchInItems: debounce(function() {
       this.filteredItems = this.items.filter(
         (item) =>
-          item.description.includes(this.searchText) ||
-          item.title.text.includes(this.searchText)
+          //if we want just title and description has part of search text
+
+          // item.description.includes(this.searchText) ||
+          // item.title.text.includes(this.searchText)
+
+          //if title or description has exact of searchText
+          item.title.text === this.searchText ||
+          item.description === this.searchText
       );
     }, 500),
     onStoreNewItem(itemTitle) {
